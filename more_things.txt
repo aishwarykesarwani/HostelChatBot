@@ -1,0 +1,5 @@
+To make venv ->conda create -p venv
+To activate conda->source venv/bin/activate
+to deactivate ->deactivate
+
+To make .env file ->touch .env

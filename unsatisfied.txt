@@ -1,0 +1,15 @@
+Question: who is the capital of Punjab?
+Answer: I can't answer this question.
+------------------------------------------------------------
+Question: Is there triple seat available??
+Answer: I can't answer this question.
+------------------------------------------------------------
+Question: Who is the President of India?
+Answer: I can't answer this question.
+------------------------------------------------------------
+Question: How many rooms are available now?
+Answer: Single room-5
+------------------------------------------------------------
+Question: Who is the President of the India?
+Answer: I can't answer this question.
+------------------------------------------------------------
