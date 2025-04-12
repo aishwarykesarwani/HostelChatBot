@@ -32,7 +32,7 @@ def get_conversational_chain():
     Question: \n{question}\n
 
     """
-    model=ChatGoogleGenerativeAI(model="gemma-3-27b-it",temperature=0.3)
+    model=ChatGoogleGenerativeAI(model="gemini-1.5-pro-latest",temperature=0.3)
     prompt=PromptTemplate(template=prompt_template,input_variables=["context","question"])
     chain=load_qa_chain(model,chain_type="stuff",prompt=prompt)
     return chain
