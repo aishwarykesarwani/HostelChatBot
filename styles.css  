@@ -1,0 +1,120 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+[data-theme='dark'] {
+    background-color: #2e2e2e;
+    color: #f8f9fa;
+}
+
+.container-fluid {
+    height: 100vh;
+}
+
+.chat {
+    margin-top: 50px;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+}
+
+.card-header {
+    background-color: #007bff;
+    color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.user_info {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.theme-toggle i {
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#messageFormeight {
+    padding: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+}
+
+.card-footer {
+    background-color: #f1f1f1;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group .type_msg {
+    border-radius: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    width: 100%;
+}
+
+.send_btn {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.send_btn i {
+    color: white;
+}
+
+/* Chat Bubble Styles */
+.msg_cotainer, .msg_cotainer_send {
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.msg_cotainer {
+    background-color: #f1f1f1;
+    margin-right: auto;
+}
+
+.msg_cotainer_send {
+    background-color: #007bff;
+    color: white;
+    margin-left: auto;
+}
+
+.msg_time, .msg_time_send {
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+    text-align: right;
+    color: #888;
+}
+
+@media screen and (max-width: 768px) {
+    .chat {
+        margin-top: 20px;
+    }
+
+    .card-header {
+        font-size: 16px;
+    }
+}
+

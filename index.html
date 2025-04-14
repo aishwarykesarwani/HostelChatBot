@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vijay Laxmi Villa Girls Hostel Chatbot</title>
+
+    <!-- Bootstrap + FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+    <div class="container-fluid h-100">
+        <div class="row justify-content-center h-100">
+            <div class="col-md-8 col-xl-6 chat">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div class="user_info">
+                            <span>Vijay Laxmi Villa Girls Hostel Chatbot</span>
+                            <p class="mb-0" style="font-size: 14px;">Ask anything related to our hostel</p>
+                        </div>
+                        <div class="theme-toggle">
+                            <i class="fas fa-moon" id="theme-icon"></i>
+                        </div>
+                    </div>
+
+                    <!-- Chat body -->
+                    <div id="messageFormeight" class="card-body msg_card_body">
+                        <!-- Messages will appear here -->
+                    </div>
+
+                    <!-- Input box -->
+                    <div class="card-footer">
+                        <form id="messageArea" class="input-group">
+                            <input type="text" id="text" name="msg" placeholder="Type your message..." autocomplete="off" class="form-control type_msg" required />
+                            <button type="submit" id="send" class="btn send_btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery + Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Chat logic -->
+    <script>
+        $(document).ready(function () {
+            // Theme toggle functionality
+            const themeToggle = $('.theme-toggle');
+            const themeIcon = $('#theme-icon');
+            let darkMode = localStorage.getItem('darkMode') === 'true';
+
+            // Apply saved theme
+            if (darkMode) {
+                $('body').attr('data-theme', 'dark');
+                themeIcon.removeClass('fa-moon').addClass('fa-sun');
+            }
+
+            // Toggle theme
+            themeToggle.on('click', function() {
+                darkMode = !darkMode;
+                localStorage.setItem('darkMode', darkMode);
+                
+                if (darkMode) {
+                    $('body').attr('data-theme', 'dark');
+                    themeIcon.removeClass('fa-moon').addClass('fa-sun');
+                } else {
+                    $('body').removeAttr('data-theme');
+                    themeIcon.removeClass('fa-sun').addClass('fa-moon');
+                }
+            });
+
+            // Welcome message
+            const welcomeHtml = `
+                <div class="msg_cotainer">
+                    Welcome to Vijay Laxmi Villa Girls Hostel 👋<br>
+                    How may I assist you today?
+                    <span class="msg_time">${getCurrentTime()}</span>
+                </div>
+            `;
+            $("#messageFormeight").append(welcomeHtml);
+            scrollToBottom();
+
+            // Message submission
+            $("#messageArea").on("submit", function (event) {
+                event.preventDefault();
+                sendMessage();
+            });
+
+            // Also allow Enter key to send message
+            $("#text").on("keypress", function(e) {
+                if (e.which === 13 && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            function getCurrentTime() {
+                const date = new Date();
+                const hour = date.getHours();
+                const minute = date.getMinutes();
+                return hour + ":" + (minute < 10 ? "0" + minute : minute);
+            }
+
+            function sendMessage() {
+                const rawText = $("#text").val().trim();
+                if (!rawText) return;
+
+                const time = getCurrentTime();
+
+                // User message
+                const userHtml = `
+                    <div class="msg_cotainer_send">
+                        ${rawText}
+                        <span class="msg_time_send">${time}</span>
+                    </div>
+                `;
+                $("#text").val("");
+                $("#messageFormeight").append(userHtml);
+                scrollToBottom();
+
+                // Bot response
+                $.ajax({
+                    url: "/get",  // Change this URL to the endpoint where you process the chatbot's responses
+                    type: "POST",
+                    data: { msg: rawText },
+                    success: function(data) {
+                        const botHtml = `
+                            <div class="msg_cotainer">
+                                ${data}
+                                <span class="msg_time">${time}</span>
+                            </div>
+                        `;
+                        $("#messageFormeight").append(botHtml);
+                        scrollToBottom();
+                    },
+                    error: function(xhr, status, error) {
+                        const errorHtml = `
+                            <div class="msg_cotainer">
+                                Sorry, I'm having trouble connecting. Please try again later.
+                                <span class="msg_time">${time}</span>
+                            </div>
+                        `;
+                        $("#messageFormeight").append(errorHtml);
+                        scrollToBottom();
+                    }
+                });
+            }
+
+            function scrollToBottom() {
+                const msgBody = $("#messageFormeight");
+                msgBody.scrollTop(msgBody[0].scrollHeight);
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,4 +1,5 @@
 pyPDF2
+flask
 streamlit
 faiss-cpu
 langchain_google_genai

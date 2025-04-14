@@ -16,7 +16,7 @@ def txt_string(file_path):
     return text
 
 def get_text_chunks(text):
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=1000)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
     chunks=text_splitter.split_text(text);
     return chunks;
 
@@ -36,6 +36,7 @@ def get_conversational_chain():
     prompt=PromptTemplate(template=prompt_template,input_variables=["context","question"])
     chain=load_qa_chain(model,chain_type="stuff",prompt=prompt)
     return chain
+
 
 
 
@@ -67,9 +68,6 @@ def user_input(user_question):
     return response['output_text']
 
 
-
-
-
 def load_env():
     load_dotenv();
     api_kk=os.getenv("GOOGLE_API_KEY")
@@ -95,3 +93,4 @@ def main():
 
 if __name__=="__main__":
     main()
+
