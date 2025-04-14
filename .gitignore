@@ -1,3 +1,3 @@
 venv/
 .env
-data/hostel_info.txt
+hostel_info.txt
