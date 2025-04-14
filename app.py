@@ -34,7 +34,11 @@ def get_vector_store(text_chunks):
 # Get the conversational chain
 def get_conversational_chain():
     prompt_template = """
-    Answer the question only from pdf. If answer is not related to pdf, just say "I can't answer this question".
+    You are a chatbot of a girls hostel.
+    Answer to the question which is from text.
+    Be polite.
+    If there is something which is not from pdf just say I can't answer this You can contact  and give contact details.
+    In case there is some weird thing which is not related to hostel only say I can't answer this
     Context:\n{context}\n
     Question:\n{question}\n
     """
@@ -71,7 +75,7 @@ def initialize_chatbot():
     get_vector_store(text_chunks)
 
 # STREAMLIT UI
-st.set_page_config(page_title="Vijay Laxmi Hostel ChatBot", layout="centered")
+st.set_page_config(page_title="Vijay Laxmi Villa Girl's Hostel Hostel ChatBot", layout="centered")
 st.title("🏠 Vijay Laxmi Hostel ChatBot")
 
 if "chat_history" not in st.session_state:
