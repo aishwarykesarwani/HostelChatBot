@@ -79,7 +79,7 @@ def main():
     raw_text = txt_string("data/hostel_info.txt")
     text_chunks = get_text_chunks(raw_text)
     get_vector_store(text_chunks)
-    user_question = st.text_input("Ask question related to Green Valley Boys' Hostel")
+    user_question = st.text_input("Ask question related to Vijay Laxmi Girls Hostel")
 
     if user_question:
         output=user_input(user_question)
