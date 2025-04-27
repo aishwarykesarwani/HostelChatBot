@@ -75,8 +75,8 @@ def initialize_chatbot():
     get_vector_store(text_chunks)
 
 # STREAMLIT UI
-st.set_page_config(page_title="Vijay Laxmi Villa Girl's Hostel Hostel ChatBot", layout="centered")
-st.title("🏠 Vijay Laxmi Hostel ChatBot")
+st.set_page_config(page_title="Vijay Laxmi Villa Girl's Hostel ChatBot", layout="centered")
+st.title("🏠 Vijay Laxmi Villa Girl's Hostel Hostel ChatBot")
 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
